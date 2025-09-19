@@ -1,11 +1,10 @@
-package com.cmm.cmmregistryserver;
+package com.cmm.cmmgatewayserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootTest
-class CmmRegistryServerApplicationTests {
+class CmmGatewayServerApplicationTests {
 
     @Test
     void contextLoads() {

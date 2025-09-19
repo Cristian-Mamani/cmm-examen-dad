@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cmm-curso-service
+    name: cmm-ms-curso-service
 
   datasource:
     url: jdbc:mysql://localhost:3309/cursos?useSSL=false&serverTimezone=UTC

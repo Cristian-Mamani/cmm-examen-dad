@@ -1,0 +1,34 @@
+server:
+  port: 9091
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8092/eureka
+  instance:
+    hostname: localhost
+
+spring:
+  application:
+    name: cmm-ms-gateway-server
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: cmm-ms-curso-service
+              uri: lb://cmm-ms-curso-service
+              predicates:
+                - Path=/matriculas/**
+            - id: cmm-ms-curso-service
+              uri: lb://cmm-ms-curso-service
+              predicates:
+                - Path=/cursos/**
+              # Si tu servicio real no expone /categoria/...:
+              # filters:
+              #   - StripPrefix=1
