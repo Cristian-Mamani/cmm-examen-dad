@@ -33,7 +33,7 @@ public class DetalleMatriculaServiceImpl implements DetalleMatriculaService {
 
     @Override
     public DetalleMatricula actualizar(Long id, DetalleMatricula detalle) {
-        detalle.setId(id);
+        detalle.setIdDetalleMatricula(id);
         return repository.save(detalle);
     }
 

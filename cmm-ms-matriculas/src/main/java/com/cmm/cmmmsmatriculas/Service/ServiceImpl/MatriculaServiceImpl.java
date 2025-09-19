@@ -11,18 +11,25 @@ import com.cmm.cmmmsmatriculas.Repository.DetalleMatriculaRepository;
 import com.cmm.cmmmsmatriculas.Repository.MatriculaRepository;
 import com.cmm.cmmmsmatriculas.Service.MatriculaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
+
 public class MatriculaServiceImpl implements MatriculaService {
 
     private final MatriculaRepository matriculaRepository;
     private final DetalleMatriculaRepository detalleMatriculaRepository;
     private final CursoFeign cursoFeign;
 
+    @Autowired
+    public MatriculaServiceImpl(MatriculaRepository matriculaRepository, DetalleMatriculaRepository detalleMatriculaRepository, CursoFeign cursoFeign) {
+        this.matriculaRepository = matriculaRepository;
+        this.detalleMatriculaRepository = detalleMatriculaRepository;
+        this.cursoFeign = cursoFeign;
+    }
 
     @Override
     public Matricula save(Matricula matricula) {
@@ -54,12 +61,10 @@ public class MatriculaServiceImpl implements MatriculaService {
 
         List<DetalleMatriculaDto> detallesDTO = detalles.stream().map(det -> {
             DetalleMatriculaDto dto = new DetalleMatriculaDto();
-            dto.setIdDetalleMatricula(det.getId());
-            dto.setId(det.getId());
-            dto.setIdMatricula(det.getMatricula().getId());
+            dto.setIdDetalleMatricula(det.getIdDetalleMatricula());
+            dto.setIdCurso(det.getIdCurso()); // <-- más claro
+            dto.setIdMatricula(det.getMatricula().getIdMatricula());
 
-            // Llamada al ms-curso
-            System.out.println(">>> Consultando curso con id=" + det.getIdCurso());
             CursoDto curso = cursoFeign.buscarPorId(det.getIdCurso()).getBody();
             dto.setCurso(curso);
 
@@ -68,7 +73,7 @@ public class MatriculaServiceImpl implements MatriculaService {
 
         // Construir DTO de matrícula
         MatriculaDto dto = new MatriculaDto();
-        dto.setIdMatricula(matricula.getId());
+        dto.setIdMatricula(matricula.getIdMatricula());
         dto.setNumeroMatricula("Matrícula " + matricula.getNumeroMatricula()); // puedes personalizar
         dto.setDetalles(detallesDTO);
 

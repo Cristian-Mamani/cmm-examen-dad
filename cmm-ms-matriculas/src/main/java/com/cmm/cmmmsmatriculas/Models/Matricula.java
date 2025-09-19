@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Matricula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idMatricula;
     private String nombreAlumno;
     private String numeroMatricula;
 }

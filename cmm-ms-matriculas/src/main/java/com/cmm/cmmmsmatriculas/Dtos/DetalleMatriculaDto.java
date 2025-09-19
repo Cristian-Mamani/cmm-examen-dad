@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class DetalleMatriculaDto {
     private Long idMatricula;
-    private Long id;
+    private Long idCurso;
     private Long idDetalleMatricula;
     private CursoDto curso;
 }

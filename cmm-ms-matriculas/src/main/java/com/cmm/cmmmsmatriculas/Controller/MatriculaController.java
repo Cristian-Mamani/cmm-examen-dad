@@ -57,7 +57,7 @@ public class MatriculaController {
     ) {
         // Asociar matrícula al detalle
         Matricula matricula = new Matricula();
-        matricula.setId(id);
+        matricula.setIdMatricula(id);
         detalle.setMatricula(matricula);
 
         DetalleMatricula saved = detalleMatriculaService.guardar(detalle);
