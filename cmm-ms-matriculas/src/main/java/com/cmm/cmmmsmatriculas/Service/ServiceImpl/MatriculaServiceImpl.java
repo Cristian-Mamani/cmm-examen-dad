@@ -74,7 +74,8 @@ public class MatriculaServiceImpl implements MatriculaService {
         // Construir DTO de matrícula
         MatriculaDto dto = new MatriculaDto();
         dto.setIdMatricula(matricula.getIdMatricula());
-        dto.setNumeroMatricula("Matrícula " + matricula.getNumeroMatricula()); // puedes personalizar
+        dto.setNumeroMatricula("Matrícula " + matricula.getNumeroMatricula());
+        dto.setNombreAlumno(matricula.getNombreAlumno());// puedes personalizar
         dto.setDetalles(detallesDTO);
 
         return dto;
